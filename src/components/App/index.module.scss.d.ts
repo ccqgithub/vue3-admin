@@ -1,3 +1,3 @@
 export const __esModule: true;
-export const test: string;
+export const main: string;
 

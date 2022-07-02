@@ -1,11 +1,9 @@
 const path = require('path');
-const less = require('less');
+const sass = require('sass');
 const glob = require('glob');
-const fs = require('fs');
 const watch = require('node-watch');
 const minimatch = require('minimatch');
 const DtsCreator = require('typed-css-modules');
-const { default: LessPluginAliases } = require('less-plugin-aliases');
 
 const RealDtsCreator = DtsCreator.default;
 const root = process.cwd();
@@ -16,19 +14,20 @@ const creator = new RealDtsCreator({
 
 const updateFile = async (f) => {
   try {
-    const content = fs.readFileSync(f, 'utf8');
-    const lessOut = await less.render(content, {
-      filename: f,
-      plugins: [
-        new LessPluginAliases({
-          prefix: '~',
-          aliases: {
-            '@': path.resolve(__dirname, '../src/')
+    const out = await sass.compileAsync(f, {
+      importers: [
+        {
+          findFileUrl(url) {
+            if (!url.startsWith('@')) return null;
+            return new URL(
+              url.substring(1),
+              path.resolve(__dirname, '../src/')
+            );
           }
-        })
+        }
       ]
     });
-    await creator.create(f, lessOut.css, true).then((content) => {
+    await creator.create(f, out.css, true).then((content) => {
       return content.writeFile();
     });
   } catch (e) {
@@ -40,7 +39,7 @@ watch(
   root,
   {
     recursive: true,
-    filter: (f) => minimatch(f, '**/*.module.less')
+    filter: (f) => minimatch(f, '**/*.module.scss')
   },
   (evt, name) => {
     if (evt === 'update') {
@@ -50,7 +49,7 @@ watch(
 );
 
 glob(
-  '**/*.module.less',
+  '**/*.module.scss',
   {
     cwd: root
   },
