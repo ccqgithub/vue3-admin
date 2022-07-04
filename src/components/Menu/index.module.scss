@@ -1,0 +1,84 @@
+.menu {
+  width: 100%;
+  padding: 12px 0;
+}
+
+.subWrapper {
+  width: 100%;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  overflow: hidden;
+}
+
+.sub {
+  width: 100%;
+}
+
+.subMenu {
+  width: 100%;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.con {
+  width: 0;
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  cursor: pointer;
+  transform: all 0.25s ease;
+
+  &:hover {
+    color: #409eff;
+
+    .arrow {
+      color: #409eff;
+    }
+  }
+
+  &.isActive {
+    color: #409eff;
+    background: rgb(230, 247, 255);
+  }
+
+  &.isActive.isSubTitle {
+    background: none;
+  }
+}

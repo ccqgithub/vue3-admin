@@ -4,3 +4,7 @@ export const joinPath = (...args: string[]) => {
   }, '');
   return str.replace(/\/{2}/g, '/');
 };
+
+export const trimPath = (p: string) => {
+  return p.replace(/^\/+/g, '').replace(/\/+$/g, '');
+};

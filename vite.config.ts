@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import vueI18n from '@intlify/vite-plugin-vue-i18n';
+import svgLoader from 'vite-svg-loader';
 import ElementPlus from 'unplugin-element-plus/vite';
 import { createClassNamehash } from './scripts/utils/createClassNameHash';
 import { loadEnv } from './scripts/utils/loadEnv';
@@ -39,6 +40,9 @@ export default defineConfig((ctx) => {
     },
     plugins: [
       vue(),
+      svgLoader({
+        defaultImport: 'url'
+      }),
       vueI18n(),
       ElementPlus(),
       legacy({

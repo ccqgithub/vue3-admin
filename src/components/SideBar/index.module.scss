@@ -30,13 +30,6 @@
   white-space: nowrap;
 }
 
-// navs
-.navs {
-  height: 0;
-  flex: 1 1 auto;
-  overflow: hidden auto;
-}
-
 // user
 .user {
   border-top: 1px solid #ddd;
@@ -89,6 +82,13 @@
     height: 16px;
     transform: rotate(0deg);
   }
+}
+
+// navs
+.navs {
+  height: 0;
+  flex: 1 1 auto;
+  overflow: hidden auto;
 }
 
 // sidebar
