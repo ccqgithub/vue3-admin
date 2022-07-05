@@ -4,6 +4,10 @@ export default {
 };
 </script>
 
+<script setup lang="ts">
+import { PageWrapper } from '@/components';
+</script>
+
 <template>
-  <div>404 Not Found</div>
+  <PageWrapper><div>404 Not Found</div></PageWrapper>
 </template>

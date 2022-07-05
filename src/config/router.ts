@@ -1,4 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordRaw,
+  RouteRecordNormalized
+} from 'vue-router';
+import { TransitionType } from '@/types';
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -24,7 +30,7 @@ export const routes: RouteRecordRaw[] = [
       {
         name: 'UsersAdd',
         path: 'add',
-        component: () => import('@/pages/User/index.vue')
+        component: () => import('@/pages/User/Add.vue')
       },
       {
         name: 'UsersInfo',
@@ -51,7 +57,7 @@ export const routes: RouteRecordRaw[] = [
       {
         name: 'RolesAdd',
         path: 'add',
-        component: () => import('@/pages/Role/index.vue')
+        component: () => import('@/pages/Role/Add.vue')
       },
       {
         name: 'RolesInfo',
@@ -77,7 +83,29 @@ export const routes: RouteRecordRaw[] = [
   }
 ];
 
+const findRoute = (list: RouteRecordNormalized[], path: string) => {
+  return list.find((v) => {
+    const res = router.resolve(v);
+    return res.fullPath === path;
+  });
+};
+
 export const router = createRouter({
   history: createWebHistory(),
   routes
+});
+
+router.afterEach((to, from) => {
+  let type: TransitionType = 'FADE';
+  const isBack = !!findRoute(from.matched, to.fullPath);
+  const isForward = !!findRoute(to.matched, from.fullPath);
+
+  if (to.fullPath === from.fullPath) {
+    type = 'FADE';
+  } else if (isBack) {
+    type = 'SLIDE_RIGHT';
+  } else if (isForward) {
+    type = 'SLIDE_LEFT';
+  }
+  to.meta.transitionType = type!;
 });

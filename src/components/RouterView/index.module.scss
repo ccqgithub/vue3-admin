@@ -1,0 +1,39 @@
+// fade
+.fadeEnterActive,
+.fadeLeaveActive {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.fadeEnterFrom,
+.fadeLeaveTo {
+  opacity: 0;
+}
+
+// slide left
+.slideLeftEnterActive,
+.slideLeftLeaveActive {
+  transition: transform 0.5s ease;
+}
+
+.slideLeftEnterFrom {
+  transform: translateX(50px);
+}
+
+.slideLeftLeaveTo {
+  transform: translateX(-50px);
+}
+
+// slide left
+.slideRightEnterActive,
+.slideRightLeaveActive {
+  transition: transform 0.5s ease;
+}
+
+.slideRightEnterFrom {
+  transform: translateX(-50px);
+}
+
+.slideRightLeaveTo {
+  transform: translateX(50px);
+}

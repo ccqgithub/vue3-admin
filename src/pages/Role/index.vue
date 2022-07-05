@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import { PageWrapper } from '@/components';
 </script>
 
 <template>
-  <RouterView></RouterView>
+  <PageWrapper>
+    <RouterView></RouterView>
+  </PageWrapper>
 </template>

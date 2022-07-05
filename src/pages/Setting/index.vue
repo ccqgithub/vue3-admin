@@ -1,3 +1,15 @@
+<script lang="ts">
+export default {
+  name: 'Setting'
+};
+</script>
+
+<script setup lang="ts">
+import { PageWrapper } from '@/components';
+</script>
+
 <template>
-  <div>Settings</div>
+  <PageWrapper>
+    <div>Settings</div>
+  </PageWrapper>
 </template>

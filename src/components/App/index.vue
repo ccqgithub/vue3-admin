@@ -5,8 +5,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import { SideBar } from '@/components';
+import { SideBar, RouterView } from '@/components';
 import * as S from './index.module.scss';
 </script>
 

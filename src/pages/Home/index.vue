@@ -4,6 +4,12 @@ export default {
 };
 </script>
 
+<script setup lang="ts">
+import { PageWrapper } from '@/components';
+</script>
+
 <template>
-  <div>home</div>
+  <PageWrapper>
+    <div>home</div>
+  </PageWrapper>
 </template>

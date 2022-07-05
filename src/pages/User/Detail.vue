@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { PageWrapper } from '@/components';
+</script>
+
 <template>
-  <div>detail</div>
+  <PageWrapper>
+    <div>detail</div>
+  </PageWrapper>
 </template>

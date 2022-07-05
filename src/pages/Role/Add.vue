@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { PageWrapper } from '@/components';
+</script>
+
 <template>
-  <div>Add User</div>
+  <PageWrapper>
+    <div>Add User</div>
+  </PageWrapper>
 </template>

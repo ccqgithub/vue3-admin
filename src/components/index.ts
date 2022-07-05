@@ -4,3 +4,4 @@ export * from './SideBar';
 export * from './RouterView';
 export * from './Icons';
 export * from './Menu';
+export * from './PageWrapper';
