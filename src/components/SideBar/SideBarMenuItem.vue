@@ -8,7 +8,8 @@ export default {
 import { PropType, toRefs } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { trimPath } from '@/utils';
-import { SubMenu, MenuItem } from '@/components';
+import { useAppStore } from '@/use';
+import { SubMenu, MenuItem, SubMenuTitle } from '@/components';
 import { MenuItem as IMenuItem } from '@/config';
 import SideBarMenuItem from './SideBarMenuItem.vue';
 
@@ -18,6 +19,7 @@ const props = defineProps({
     required: true
   }
 });
+const appStore = useAppStore();
 const { item } = toRefs(props);
 const route = useRoute();
 const router = useRouter();
@@ -36,18 +38,23 @@ const click = () => {
 
 <template>
   <!-- submenu -->
-  <SubMenu v-if="item.children?.length">
+  <SubMenu v-if="item.children?.length" :title="item.title">
     <template #title>
-      <MenuItem sub-title :icon="!!item.icon" :active="isActive(item)">
+      <SubMenuTitle
+        sub-title
+        :icon="!!item.icon"
+        :title="item.title"
+        :active="isActive(item)"
+      >
         <template #icon>
           <component :is="item.icon"></component>
         </template>
         <span>{{ item.title }}</span>
-      </MenuItem>
+      </SubMenuTitle>
     </template>
     <SideBarMenuItem
       v-for="obj in item.children"
-      :key="obj.index"
+      :key="obj.path"
       :item="obj"
     ></SideBarMenuItem>
   </SubMenu>
@@ -56,6 +63,8 @@ const click = () => {
     v-if="!item.children?.length"
     :icon="!!item.icon"
     :active="isActive(item)"
+    :collapsed="appStore.sideBarCollapsed"
+    :title="item.title"
     @click="click"
   >
     <template #icon>

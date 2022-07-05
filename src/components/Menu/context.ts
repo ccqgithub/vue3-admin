@@ -1,13 +1,12 @@
-import { InjectionKey } from 'vue';
+import { InjectionKey, Ref } from 'vue';
 
-export const MenuInjectionKey = Symbol() as InjectionKey<{
-  collapse: boolean;
-}>;
-
-export const MenuItemKey = Symbol() as InjectionKey<{
-  depth: number;
-}>;
-
-export const SubMenuKey = Symbol() as InjectionKey<{
-  toggle: () => {};
+export const MenuKey = Symbol() as InjectionKey<{
+  collapsed: Ref<boolean>;
+  folded: Ref<boolean>;
+  depth: Ref<number>;
+  popup: Ref<boolean>;
+  toggle: (fold?: boolean) => void;
+  toggleSub: (show: boolean) => void;
+  enterTitle: () => void;
+  leaveTitle: () => void;
 }>;

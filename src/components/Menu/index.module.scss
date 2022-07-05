@@ -3,6 +3,12 @@
   padding: 12px 0;
 }
 
+.popup {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+
 .subWrapper {
   width: 100%;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -40,6 +46,19 @@
   align-items: center;
   justify-content: center;
   color: #ccc;
+  transition: all 0.25s ease;
+
+  &.isFolded {
+    transform: rotate(180deg);
+  }
+
+  &.isPopup {
+    transform: rotate(90deg);
+
+    &.isFolded {
+      transform: rotate(-90deg);
+    }
+  }
 
   svg {
     width: 12px;

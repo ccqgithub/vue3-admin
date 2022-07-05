@@ -5,8 +5,9 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { ElTooltip } from 'element-plus';
+import { useAppStore } from '@/use';
 import { menus } from '@/config';
 import { Menu } from '@/components';
 import imgLogo from '@/assets/logo.png';
@@ -15,14 +16,14 @@ import imgToggle from '@/assets/icons/toggle.svg';
 import MenuItem from './SideBarMenuItem.vue';
 import * as S from './index.module.scss';
 
-const folded = ref(false);
+const appStore = useAppStore();
 </script>
 
 <template>
   <div
     :class="{
       [S.side]: true,
-      [S.isFolded]: folded
+      [S.isFolded]: appStore.sideBarCollapsed
     }"
   >
     <RouterLink :class="S.logo" to="/">
@@ -33,20 +34,26 @@ const folded = ref(false);
     </RouterLink>
 
     <div :class="S.navs">
-      <Menu :collapse="false">
-        <MenuItem v-for="item in menus" :key="item.index" :item="item">
+      <Menu :collapsed="appStore.sideBarCollapsed">
+        <MenuItem v-for="item in menus" :key="item.path" :item="item">
         </MenuItem>
       </Menu>
     </div>
 
-    <div :class="S.user">
-      <div :class="S.avt">
-        <img :src="imgAvt" alt="Avatar" />
+    <ElTooltip
+      content="Season Chen"
+      :disabled="!appStore.sideBarCollapsed"
+      placement="right"
+    >
+      <div :class="S.user">
+        <div :class="S.avt">
+          <img :src="imgAvt" alt="Avatar" />
+        </div>
+        <span :class="S.name">Season Chen</span>
       </div>
-      <span :class="S.name">Season Chen</span>
-    </div>
+    </ElTooltip>
 
-    <div :class="S.toggle" @click="folded = !folded">
+    <div :class="S.toggle" @click="appStore.toggleSideBar()">
       <img :class="S.img" :src="imgToggle" alt="Toggle" />
     </div>
   </div>

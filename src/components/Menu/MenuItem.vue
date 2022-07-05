@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue';
-import { IconArrowDown } from '@/components';
-import MenuItemTag from './MenuItemTag.vue';
-import { MenuItemKey, SubMenuKey } from './context';
+import { inject, ref } from 'vue';
+import { ElTooltip } from 'element-plus';
+import { MenuKey } from './context';
 import * as S from './index.module.scss';
 
 const props = defineProps({
@@ -10,46 +9,49 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  subTitle: {
-    type: Boolean,
-    default: false
-  },
   icon: {
     type: Boolean,
     default: false
+  },
+  title: {
+    type: String,
+    default: ''
   }
 });
 const emit = defineEmits<{
   (e: 'click'): void;
 }>();
-const itemCtx = inject(MenuItemKey, null);
-const sCtx = inject(SubMenuKey)!;
-const depth = computed(() => itemCtx?.depth || 0);
+const ctx = inject(MenuKey)!;
+const { depth, popup, collapsed } = ctx;
+
+const trigger = ref<HTMLElement | null>(null);
 const onClick = () => {
   emit('click');
-  props.subTitle && sCtx.toggle();
 };
 </script>
 
 <template>
-  <MenuItemTag
+  <li
+    ref="trigger"
     :class="{
       [S.item]: true,
-      [S.isActive]: props.active,
-      [S.isSubTitle]: !!props.subTitle
+      [S.isActive]: props.active
     }"
     :style="{
-      paddingLeft: `${depth * 16 + 16}px`
+      paddingLeft: `${popup ? 16 : depth * 16 + 16}px`
     }"
-    :sub-title="props.subTitle"
     @click="onClick"
   >
     <span :class="S.con">
       <i v-if="props.icon" :class="S.icon"><slot name="icon"></slot></i>
       <slot></slot>
     </span>
-    <i v-if="props.subTitle" :class="S.arrow">
-      <IconArrowDown />
-    </i>
-  </MenuItemTag>
+  </li>
+  <ElTooltip
+    v-if="depth === 0 && collapsed"
+    placement="right"
+    :virtual-ref="trigger!"
+    virtual-triggering
+    content="test"
+  ></ElTooltip>
 </template>

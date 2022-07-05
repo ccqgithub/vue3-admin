@@ -101,6 +101,7 @@
   flex-direction: column;
   align-items: stretch;
   position: relative;
+  transition: all 0.25s ease;
 
   &.isFolded {
     width: 48px;

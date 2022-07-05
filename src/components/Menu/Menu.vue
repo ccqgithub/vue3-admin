@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import { toRefs, provide, reactive } from 'vue';
-import { MenuInjectionKey } from './context';
+import { toRefs, provide, ref } from 'vue';
+import { MenuKey } from './context';
 import * as S from './index.module.scss';
 
 const props = defineProps({
-  collapse: {
+  collapsed: {
     type: Boolean,
     default: false
   }
 });
-const { collapse } = toRefs(props);
-const ctx = reactive({ collapse });
-provide(MenuInjectionKey, ctx);
+const { collapsed } = toRefs(props);
+
+provide(MenuKey, {
+  collapsed,
+  folded: ref(false),
+  depth: ref(0),
+  popup: ref(false),
+  toggle: () => {},
+  toggleSub: () => {},
+  enterTitle: () => {},
+  leaveTitle: () => {}
+});
 </script>
 
 <template>
