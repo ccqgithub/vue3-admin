@@ -19,10 +19,9 @@ const updateFile = async (f) => {
         {
           findFileUrl(url) {
             if (!url.startsWith('@')) return null;
-            return new URL(
-              url.substring(1),
-              path.resolve(__dirname, '../src/')
-            );
+            const p = path.resolve(__dirname, '../src/', url.substring(2));
+            const res = new URL(`file://${p}`);
+            return res;
           }
         }
       ]
