@@ -3,5 +3,13 @@ import IconSetting from '@/assets/icons/setting.svg?component';
 import IconToggle from '@/assets/icons/toggle.svg?component';
 import IconUser from '@/assets/icons/user.svg?component';
 import IconArrowDown from '@/assets/icons/arrow-down.svg?component';
+import IconRole from '@/assets/icons/role.svg?component';
 
-export { IconDashboard, IconSetting, IconToggle, IconUser, IconArrowDown };
+export {
+  IconDashboard,
+  IconSetting,
+  IconToggle,
+  IconUser,
+  IconArrowDown,
+  IconRole
+};

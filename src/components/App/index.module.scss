@@ -3,4 +3,32 @@
   flex: 1 1 auto;
   min-height: 100%;
   overflow: auto;
+  padding-left: 60px;
+}
+
+.header {
+  height: 56px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: #008dff;
+  box-shadow: 0 0.5rem 1rem 0 rgb(44 51 73 / 10%);
+  padding: 0 20px;
+  color: #fff;
+  position: sticky;
+  left: 0;
+  top: 0;
+}
+
+.headerLeft {
+  display: flex;
+}
+
+.headerRight {
+  display: flex;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  line-height: 22px;
 }

@@ -1,0 +1,44 @@
+.bread {
+  display: flex;
+  align-items: center;
+}
+
+.itemLink {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 14px;
+  color: #ccc;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &::after {
+    content: "/";
+    display: block;
+    color: #bbb;
+    margin-left: 5px;
+  }
+
+  &:last-child {
+    color: #fff;
+    font-size: 16px;
+
+    &::after {
+      display: none;
+    }
+
+    .itemLink {
+      font-size: 16px;
+      color: #fff;
+    }
+  }
+}
