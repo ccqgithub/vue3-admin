@@ -6,6 +6,7 @@ export type MenuItem = {
   icon?: FunctionalComponent<SVGAttributes, {}>;
   path?: string;
   children?: MenuItem[];
+  link?: string;
 };
 
 export const menus: MenuItem[] = [

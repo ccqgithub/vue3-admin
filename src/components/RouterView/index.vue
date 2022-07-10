@@ -4,7 +4,6 @@ import { TransitionType } from '@/types';
 import * as S from './index.module.scss';
 
 const getTransition = (type: TransitionType) => {
-  console.log(type);
   if (type === 'FADE') {
     return {
       'enter-from-class': S.fadeEnterFrom,

@@ -7,3 +7,5 @@ export * from './PageWrapper';
 export * from './Card';
 export * from './Layout';
 export * from './Breadcrumb';
+export * from './ErrorWrapper';
+export * from './Loading';

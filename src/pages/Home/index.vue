@@ -5,7 +5,12 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { PageWrapper, Row, Col, Card, Box } from '@/components';
+import { PageWrapper, Row, Col as Col, Card, Box } from '@/components';
+import CardTotal from './CardTotal.vue';
+import CardVisit from './CardVisit.vue';
+import CardPay from './CardPay.vue';
+import CardActivity from './CardActivity.vue';
+
 const breadCrumbs = [
   {
     title: 'Home',
@@ -23,7 +28,29 @@ const breadCrumbs = [
     <Box>
       <Row>
         <Col>
-          <Card style="height: 100%">
+          <Card>
+            <CardTotal></CardTotal>
+          </Card>
+        </Col>
+        <Col>
+          <Card>
+            <CardVisit></CardVisit>
+          </Card>
+        </Col>
+        <Col>
+          <Card>
+            <CardPay></CardPay>
+          </Card>
+        </Col>
+        <Col>
+          <Card>
+            <CardActivity></CardActivity>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Card>
             <div style="height: 300px">3444</div>
           </Card>
         </Col>

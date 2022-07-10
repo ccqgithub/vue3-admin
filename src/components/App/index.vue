@@ -5,13 +5,11 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { SideBar, RouterView } from '@/components';
-import * as S from './index.module.scss';
+import { RouterView, ErrorCapture } from '@/components';
 </script>
 
 <template>
-  <SideBar />
-  <div :class="S.main">
+  <ErrorCapture>
     <RouterView></RouterView>
-  </div>
+  </ErrorCapture>
 </template>
