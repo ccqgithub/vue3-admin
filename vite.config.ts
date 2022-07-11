@@ -43,7 +43,9 @@ export default defineConfig((ctx) => {
       svgLoader({
         defaultImport: 'url'
       }),
-      vueI18n(),
+      vueI18n({
+        include: path.resolve(__dirname, './src/config/locales/')
+      }),
       ElementPlus(),
       legacy({
         targets: [
