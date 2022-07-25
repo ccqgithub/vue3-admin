@@ -1,9 +1,20 @@
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      //
-    }
-  }
+/// <reference types="vite/client" />
+/// <reference types="vite-svg-loader" />
+
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue';
+  const component: DefineComponent<{}, {}, any>;
+  export default component;
 }
 
-export {};
+declare const BMapGL: any;
+
+interface ImportMetaEnv extends CustomProcessEnv {}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
+declare namespace NodeJS {
+  interface ProcessEnv extends CustomProcessEnv {}
+}

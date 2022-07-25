@@ -11,7 +11,7 @@ import { ElMessage, ElMessageBox, ElTooltip } from 'element-plus';
 import { useRouter } from 'vue-router';
 import { useAppStore } from '@/use';
 import { encryptPhone } from '@/utils';
-import { logout } from '@/service/user';
+import { logout } from '@/service';
 import { menus } from '@/config';
 import imgLogo from '@/assets/logo.png';
 import IconMore from '@/assets/icons/more.svg?component';
@@ -34,7 +34,7 @@ const mouseLeave = () => {
 const doLogout = async () => {
   try {
     await logout();
-    appStore.logout();
+    appStore.clearLogin();
     router.replace('/login');
   } catch (e: any) {
     ElMessage.error(e.message);
@@ -67,7 +67,7 @@ const questLogout = () => {
         </div>
         <span :class="S.logoText">后台管理系统</span>
       </div>
-      <div :class="S.logMin">
+      <div :class="S.logoMin">
         <div :class="S.logoImg">
           <img :src="imgLogo" alt="Logo" />
         </div>

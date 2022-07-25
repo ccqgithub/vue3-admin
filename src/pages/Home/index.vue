@@ -10,6 +10,7 @@ import CardTotal from './CardTotal.vue';
 import CardVisit from './CardVisit.vue';
 import CardPay from './CardPay.vue';
 import CardActivity from './CardActivity.vue';
+import CardInfo from './CardInfo.vue';
 
 const breadCrumbs = [
   {
@@ -50,24 +51,7 @@ const breadCrumbs = [
       </Row>
       <Row>
         <Col>
-          <Card>
-            <div style="height: 300px">3444</div>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <div style="height: 300px">3444</div>
-          </Card>
-          <Card>
-            <div style="height: 100px">3444</div>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Card>
-            <div style="height: 600px">3444</div>
-          </Card>
+          <CardInfo />
         </Col>
       </Row>
     </Box>

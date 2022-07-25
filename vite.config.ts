@@ -59,6 +59,11 @@ export default defineConfig((ctx) => {
     ],
     build: {
       target: ['es2015']
+    },
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      }
     }
   };
 });

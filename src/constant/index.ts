@@ -1,1 +1,1 @@
-export const TOKEN_NAME = 'user-id-token';
+export const TOKEN_NAME = 'login_token';

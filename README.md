@@ -1,2 +1,2 @@
-# Vue3 Admin
+# Vue 3 + TypeScript + Vite
 

@@ -1,4 +1,4 @@
-type ErrorType = 'ERROR' | 'NETWORK_ERROR';
+type ErrorType = 'ERROR' | 'NETWORK_ERROR' | 'NO_AUTHORIZATION';
 
 export const normalizeError = <T = any>(
   error: any,

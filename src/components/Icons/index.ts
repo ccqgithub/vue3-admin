@@ -4,6 +4,7 @@ import IconToggle from '@/assets/icons/toggle.svg?component';
 import IconUser from '@/assets/icons/user.svg?component';
 import IconArrowDown from '@/assets/icons/arrow-down.svg?component';
 import IconRole from '@/assets/icons/role.svg?component';
+import IconWorkspace from '@/assets/icons/workspace.svg?component';
 
 export {
   IconDashboard,
@@ -11,5 +12,6 @@ export {
   IconToggle,
   IconUser,
   IconArrowDown,
-  IconRole
+  IconRole,
+  IconWorkspace
 };

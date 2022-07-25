@@ -1,5 +1,11 @@
 import { FunctionalComponent, SVGAttributes } from 'vue';
-import { IconDashboard, IconUser, IconRole, IconSetting } from '@/components';
+import {
+  IconDashboard,
+  IconUser,
+  IconRole,
+  IconSetting,
+  IconWorkspace
+} from '@/components';
 
 export type MenuItem = {
   title: string;

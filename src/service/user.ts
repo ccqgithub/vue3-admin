@@ -1,44 +1,36 @@
 import { User } from '@/types';
-import { getGlobalStore } from '@/store';
-
-export const normalizeUser = (): User => {
-  const user: User = {
-    id: '1',
-    email: 'test@qq.com',
-    phone: '1245566',
-    photo:
-      'https://sjbz-fd.zol-img.com.cn/t_s320x510c5/g2/M00/08/0B/ChMlWV5MgmSIPx9oAAeUA7jjXq4AANYRgPSOdUAB5Qb358.jpg',
-    token: '454djfskdjls;jg'
-  };
-  return user;
-};
 
 export const loginByEmail = async (args: {
   email: string;
   password: string;
 }) => {
-  // api login
-  return normalizeUser();
+  return Promise.resolve({
+    expiredIn: 72000,
+    accessToken: 'string',
+    refreshToken: 'string'
+  });
 };
 
-export const loginByPhone = async (args: {
-  phone: string;
+export const loginByUsername = async (args: {
+  username: string;
   password: string;
 }) => {
-  // api login
-  return normalizeUser();
+  return Promise.resolve({
+    expiredIn: 72000,
+    accessToken: 'string',
+    refreshToken: 'string'
+  });
 };
 
-export const getCurrentUser = async () => {
-  const globalStore = getGlobalStore()!;
-  if (!globalStore.token) return null;
-  // api get user
-  return normalizeUser();
+export const getUserInfo = async () => {
+  const user: User = {
+    id: '1',
+    email: 'ee@qq.com',
+    phone: '',
+    photo:
+      'https://tse1-mm.cn.bing.net/th/id/OET.179f060ab2a4491fbbdadf9398203748?w=272&h=272&c=7&rs=1&o=5&dpr=2&pid=1.9'
+  };
+  return user;
 };
 
-export const logout = async () => {
-  const globalStore = getGlobalStore()!;
-  if (!globalStore.token) return null;
-  // api logout
-  return Promise.resolve();
-};
+export const logout = async () => {};

@@ -1,12 +1,13 @@
 import { createApp, h } from 'vue';
 import { createPinia } from 'pinia';
 import { useProvideStores } from 'pinia-di';
+import '@/styles/element.scss';
+import '@/styles/base.scss';
 import { router } from '@/config';
 import { AppStore, setGlobalStore } from '@/store';
-import '@/styles/base.scss';
 import { App } from '@/components';
+import { i18n } from '@/i18n';
 
-const pinia = createPinia();
 const app = createApp({
   setup() {
     const { getStore } = useProvideStores({
@@ -20,6 +21,8 @@ const app = createApp({
     };
   }
 });
+
+app.use(createPinia());
+app.use(i18n);
 app.use(router);
-app.use(pinia);
 app.mount('#app');

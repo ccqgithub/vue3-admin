@@ -6,17 +6,17 @@ import { createForm, Field, FormProvider } from 'vfm';
 import { ElButton } from 'element-plus';
 import { Loading } from '@/components';
 import { useAppStore } from '@/use';
-import { loginByEmail, getUserInfo } from '@/service';
+import { loginByUsername, getUserInfo } from '@/service';
 import IconAccount from '@/assets/icons/account.svg?component';
 import IconPassword from '@/assets/icons/password.svg?component';
 import * as S from './index.module.scss';
 
 const form = createForm<{
-  email: string;
+  username: string;
   password: string;
 }>({
   initValues: {
-    email: '',
+    username: '',
     password: ''
   }
 });
@@ -35,8 +35,8 @@ const submit = () => {
     onSuccess: async (data) => {
       loading.value = true;
       try {
-        const res = await loginByEmail({
-          email: data.email,
+        const res = await loginByUsername({
+          username: data.username,
           password: data.password
         });
         appStore.setToken(res);
@@ -70,15 +70,14 @@ const submit = () => {
               <Field
                 v-slot="scope"
                 :form="form"
-                name="email"
+                name="username"
                 touch-type="BLUR"
                 change-type="ONINPUT"
                 :transform="(v) => v.trim()"
                 :rules="[
                   {
                     required: true,
-                    email: true,
-                    message: 'Please input valid email!'
+                    message: 'Please input valid user name!'
                   }
                 ]"
               >
@@ -86,14 +85,14 @@ const submit = () => {
                   v-bind="scope.field"
                   :class="S.input"
                   type="text"
-                  placeholder="Email"
+                  placeholder="Username"
                 />
               </Field>
             </div>
           </div>
         </div>
-        <div v-if="showFieldError('email')" :class="S.error">
-          {{ form.fieldError('email')?.message }}
+        <div v-if="showFieldError('username')" :class="S.error">
+          {{ form.fieldError('username')?.message }}
         </div>
       </div>
       <div :class="S.p">

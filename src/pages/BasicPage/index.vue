@@ -11,7 +11,7 @@ import { ElMessage } from 'element-plus';
 import { SideBar, RouterView, ErrorCapture, Loading } from '@/components';
 import { useAppStore } from '@/use';
 import { GeneralError } from '@/utils';
-import { getCurrentUser } from '@/service/user';
+import { getUserInfo } from '@/service';
 import * as S from './index.module.scss';
 
 const appStore = useAppStore();
@@ -22,9 +22,9 @@ const loading = ref(true);
 const getUser = async () => {
   loading.value = true;
   try {
-    const user = await getCurrentUser();
+    const user = await getUserInfo();
     if (!user) {
-      appStore.logout();
+      appStore.clearLogin();
       router.replace('/login');
       return;
     }
