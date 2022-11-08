@@ -5,3 +5,8 @@ export * from './str';
 export * from './bmap';
 export * from './amap';
 export * from './url';
+export * from './utils';
+export * from './debounce';
+export * from './list';
+export * from './confirm';
+export * from './device';

@@ -5,9 +5,9 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { PageWrapper } from '@/components';
+import { PurePage } from '@/components';
 </script>
 
 <template>
-  <PageWrapper><div>404 Not Found</div></PageWrapper>
+  <PurePage><div>404 Not Found</div></PurePage>
 </template>

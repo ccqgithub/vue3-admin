@@ -12,3 +12,7 @@ export const encryptPhone = (str: string) => {
 
   return res;
 };
+
+export const randomKey = (name = '') => {
+  return `${name}-${Date.now()}-${Math.round(Math.random() * 1000)}`;
+};

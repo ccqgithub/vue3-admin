@@ -1,14 +1,12 @@
-export const __esModule: true;
-export const fadeEnterActive: string;
-export const fadeLeaveActive: string;
-export const fadeEnterFrom: string;
-export const fadeLeaveTo: string;
-export const slideLeftEnterActive: string;
-export const slideLeftLeaveActive: string;
-export const slideLeftEnterFrom: string;
-export const slideLeftLeaveTo: string;
-export const slideRightEnterActive: string;
-export const slideRightLeaveActive: string;
-export const slideRightEnterFrom: string;
-export const slideRightLeaveTo: string;
+declare const styles: {
+  readonly "moveEnterActive": string;
+  readonly "moveLeaveActive": string;
+  readonly "moveEnterFrom": string;
+  readonly "moveLeaveTo": string;
+  readonly "fadeEnterActive": string;
+  readonly "fadeLeaveActive": string;
+  readonly "fadeEnterFrom": string;
+  readonly "fadeLeaveTo": string;
+};
+export = styles;
 

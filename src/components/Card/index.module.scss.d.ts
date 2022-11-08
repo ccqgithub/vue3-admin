@@ -1,8 +1,10 @@
-export const __esModule: true;
-export const card: string;
-export const isFull: string;
-export const head: string;
-export const title: string;
-export const extra: string;
-export const body: string;
+declare const styles: {
+  readonly "card": string;
+  readonly "isFull": string;
+  readonly "head": string;
+  readonly "title": string;
+  readonly "extra": string;
+  readonly "body": string;
+};
+export = styles;
 

@@ -1,0 +1,53 @@
+.block {
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blockTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: #f3f7fd;
+}
+
+.titleLeft {
+  width: 0;
+  flex: 1 1 auto;
+}
+
+.titleToggle {
+  flex: 0 0 auto;
+}
+
+.titleArrow {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #999;
+
+  &.isToggle {
+    transform: rotate(180deg);
+  }
+}
+
+.blockBody {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.blockBodyCon {
+  padding-bottom: 1px;
+}

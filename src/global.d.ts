@@ -8,6 +8,7 @@ declare module '*.vue' {
 }
 
 declare const BMapGL: any;
+declare const AMap: any;
 
 interface ImportMetaEnv extends CustomProcessEnv {}
 

@@ -1,39 +1,36 @@
-// fade
-.fadeEnterActive,
-.fadeLeaveActive {
+// move
+.moveEnterActive,
+.moveLeaveActive {
   opacity: 1;
-  transition: opacity 0.5s ease;
+  transform: translate(0, 0);
+  transition: all 0.3s linear;
 }
 
-.fadeEnterFrom,
-.fadeLeaveTo {
+.moveEnterFrom {
+  transform: translate(-20px, -20px);
   opacity: 0;
 }
 
-// slide left
-.slideLeftEnterActive,
-.slideLeftLeaveActive {
-  transition: transform 0.5s ease;
+.moveLeaveTo {
+  transform: translate(20px, 20px);
+  opacity: 0;
 }
 
-.slideLeftEnterFrom {
-  transform: translateX(50px);
+// fade
+.fadeEnterActive {
+  opacity: 1;
+  transition: all 0.3s ease-out;
 }
 
-.slideLeftLeaveTo {
-  transform: translateX(-50px);
+.fadeLeaveActive {
+  opacity: 1;
+  transition: all 0.2s ease-in;
 }
 
-// slide left
-.slideRightEnterActive,
-.slideRightLeaveActive {
-  transition: transform 0.5s ease;
+.fadeEnterFrom {
+  opacity: 0;
 }
 
-.slideRightEnterFrom {
-  transform: translateX(-50px);
-}
-
-.slideRightLeaveTo {
-  transform: translateX(50px);
+.fadeLeaveTo {
+  opacity: 0;
 }

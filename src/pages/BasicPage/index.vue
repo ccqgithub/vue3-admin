@@ -5,19 +5,27 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
+import { useElementSize } from '@vueuse/core';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { SideBar, RouterView, ErrorCapture, Loading } from '@/components';
 import { useAppStore } from '@/use';
 import { GeneralError } from '@/utils';
 import { getUserInfo } from '@/service';
-import * as S from './index.module.scss';
+import S from './index.module.scss';
 
 const appStore = useAppStore();
 const router = useRouter();
 const error = ref<GeneralError | null>(null);
 const loading = ref(true);
+// ele
+const refMain = ref<HTMLDivElement>();
+const refHeader = ref<HTMLDivElement>();
+const refMainPage = ref<HTMLDivElement>();
+const { height: mainHeight } = useElementSize(refMain);
+const { height: headerHeight } = useElementSize(refHeader);
+const { height: mianPageHeight } = useElementSize(refMainPage);
 
 const getUser = async () => {
   loading.value = true;
@@ -46,6 +54,15 @@ onMounted(() => {
   if (!appStore.user) {
     getUser();
   }
+
+  watchEffect(() => {
+    if (!refMain.value || !refHeader.value || !refMainPage.value) return;
+    appStore.setLayout({
+      mainHeight: mainHeight.value,
+      mainHeaderHeight: headerHeight.value,
+      mainPageHeight: mianPageHeight.value
+    });
+  });
 });
 </script>
 
@@ -57,8 +74,17 @@ onMounted(() => {
       </div>
       <template v-if="appStore.user">
         <SideBar />
-        <div :class="S.main">
-          <RouterView></RouterView>
+        <div ref="refMain" :class="S.main">
+          <div
+            :ref="(el) => {
+              appStore.setHeaderRef(el as HTMLDivElement);
+              refHeader = el as HTMLDivElement
+            }"
+            :class="S.header"
+          ></div>
+          <div ref="refMainPage" :class="S.page">
+            <RouterView transition="fade" mode="out-in"></RouterView>
+          </div>
         </div>
       </template>
     </ErrorCapture>

@@ -1,1 +1,69 @@
+@use "sass:list";
+@use "sass:map";
+
+$tabBarHeight: 56px;
+$safeAreaInsetBottomEnv: env(safe-area-inset-bottom);
+
+// color
 $colorPrimary: #008dff;
+$colorPrimaryMain: #008dff;
+$colorBorder: #ddd;
+
+$breackPointsMaxWidth: (
+  "xxl": 9999px,
+  "xl": 1920px,
+  "l": 1536px,
+  "m": 1280px,
+  "s": 1024px,
+  "sx": 640px
+);
+
+$breackPointsMinWidth: (
+  "xxl": 1921px,
+  "xl": 1537px,
+  "l": 1281px,
+  "m": 1025px,
+  "s": 641px,
+  "sx": 0px
+);
+
+@function get-breakpoints($maxWidtds) {
+  $points: ();
+  @each $key, $value in $maxWidtds {
+    $points: list.append($points, $key);
+  }
+  @return $points;
+}
+
+/* stylelint-disable-next-line scss/function-no-unknown */
+$breackPoints: get-breakpoints($breackPointsMaxWidth);
+
+@mixin breakpoint-strict($type) {
+  @if not list.index($breackPoints, $type) {
+    @content();
+  } @else {
+    @each $var in $breackPoints {
+      @if map.get($breackPointsMinWidth, $type) and
+        map.get(breackPointsMaxWidth, $type)
+      {
+        @media (min-width: map.get($breackPointsMinWidth, $type)) and (max-width: map.get(breackPointsMaxWidth, $type)) {
+          @content();
+        }
+      }
+    }
+  }
+}
+
+@mixin breakpoint($type) {
+  @if not list.index($breackPoints, $type) {
+    @content();
+  } @else {
+    @each $var in $breackPoints {
+      @if map.get($breackPointsMaxWidth, $type) {
+        @media (max-width: map.get($breackPointsMaxWidth, $type)) {
+          @content();
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@use "@/styles/var.scss";
+
+.dialog {
+  line-height: inherit;
+
+  :global(.el-dialog__header) {
+    border-bottom: 1px solid var.$colorBorder;
+    margin: 0;
+  }
+
+  :global(.el-dialog__footer) {
+    padding: 0;
+  }
+}
+
+.content {
+  text-align: left;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.footer {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid var.$colorBorder;
+}
+
+.btn {
+  flex: 0 0 auto;
+
+  &:nth-child(2) {
+    margin-left: 20px;
+  }
+}

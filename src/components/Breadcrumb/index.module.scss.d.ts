@@ -1,5 +1,7 @@
-export const __esModule: true;
-export const bread: string;
-export const itemLink: string;
-export const item: string;
+declare const styles: {
+  readonly "bread": string;
+  readonly "itemLink": string;
+  readonly "item": string;
+};
+export = styles;
 

@@ -1,7 +1,9 @@
-export const __esModule: true;
-export const loading: string;
-export const isAbsolute: string;
-export const isLock: string;
-export const icon: string;
-export const loadingRotate: string;
+declare const styles: {
+  readonly "loading": string;
+  readonly "isAbsolute": string;
+  readonly "isLock": string;
+  readonly "icon": string;
+  readonly "loadingRotate": string;
+};
+export = styles;
 

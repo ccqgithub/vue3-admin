@@ -1,5 +1,8 @@
-export const __esModule: true;
-export const box: string;
-export const cardInfo: string;
-export const map: string;
+declare const styles: {
+  readonly "page": string;
+  readonly "box": string;
+  readonly "cardInfo": string;
+  readonly "map": string;
+};
+export = styles;
 

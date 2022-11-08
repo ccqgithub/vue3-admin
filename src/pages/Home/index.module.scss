@@ -1,3 +1,11 @@
+.page {
+  :global {
+    .el-col {
+      margin-bottom: 16px;
+    }
+  }
+}
+
 .box {
   position: relative;
 }

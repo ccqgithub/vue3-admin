@@ -1,15 +1,10 @@
-import { FunctionalComponent, SVGAttributes } from 'vue';
-import {
-  IconDashboard,
-  IconUser,
-  IconRole,
-  IconSetting,
-  IconWorkspace
-} from '@/components';
+import { Component } from 'vue';
+import { IconDashboard, IconSetting } from '@/components/Icons';
+import IconLocation from '@/assets/icons/location.svg?component';
 
 export type MenuItem = {
   title: string;
-  icon?: FunctionalComponent<SVGAttributes, {}>;
+  icon?: Component;
   path?: string;
   children?: MenuItem[];
   link?: string;
@@ -17,35 +12,30 @@ export type MenuItem = {
 
 export const menus: MenuItem[] = [
   {
-    title: '基础',
+    title: 'Favorites',
     children: [
       {
         title: 'DashBoard',
         icon: IconDashboard,
-        path: '/'
+        path: '/dashboard'
       }
     ]
   },
   {
-    title: '用户和权限',
+    title: 'Space Management',
     children: [
       {
-        title: '用户管理',
-        icon: IconUser,
-        path: '/users'
-      },
-      {
-        title: '角色管理',
-        icon: IconRole,
-        path: '/roles'
+        title: 'Locations',
+        icon: IconLocation,
+        path: '/locations'
       }
     ]
   },
   {
-    title: '其他',
+    title: 'Other',
     children: [
       {
-        title: '设置',
+        title: 'Settings',
         icon: IconSetting,
         path: '/settings'
       }

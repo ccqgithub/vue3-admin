@@ -1,31 +1,52 @@
-<script setup lang="ts">
-import { RouterView } from 'vue-router';
-import { TransitionType } from '@/types';
-import * as S from './index.module.scss';
+<script lang="ts">
+export default {
+  name: 'RouterView'
+};
+</script>
 
-const getTransition = (type: TransitionType) => {
-  if (type === 'FADE') {
+<script setup lang="ts">
+import { PropType } from 'vue';
+import { RouterView } from 'vue-router';
+import S from './index.module.scss';
+
+const props = defineProps({
+  keepAlive: {
+    type: Boolean,
+    default: false
+  },
+  keepAliveInclude: {
+    type: [String, RegExp, Array] as PropType<string | RegExp | string[]>,
+    default: undefined
+  },
+  keepAliveExclude: {
+    type: [String, RegExp, Array] as PropType<string | RegExp | string[]>,
+    default: undefined
+  },
+  transition: {
+    type: String as PropType<'fade' | 'move'>,
+    default: 'fade'
+  },
+  mode: {
+    type: String as PropType<'out-in' | 'in-out'>,
+    default: undefined
+  }
+});
+
+const getTransition = () => {
+  if (props.transition === 'fade') {
     return {
       'enter-from-class': S.fadeEnterFrom,
-      'enter-active-class': S.fadeEnterActive,
       'leave-active-class': S.fadeLeaveActive,
+      'enter-active-class': S.fadeEnterActive,
       'leave-to-class': S.fadeLeaveTo
     };
   }
-  if (type === 'SLIDE_LEFT') {
+  if (props.transition === 'move') {
     return {
-      'enter-from-class': S.slideLeftEnterFrom,
-      'leave-active-class': S.slideLeftLeaveActive,
-      'enter-active-class': S.slideLeftEnterActive,
-      'leave-to-class': S.slideLeftLeaveTo
-    };
-  }
-  if (type === 'SLIDE_RIGHT') {
-    return {
-      'enter-from-class': S.slideRightEnterFrom,
-      'leave-active-class': S.slideRightLeaveActive,
-      'enter-active-class': S.slideRightEnterActive,
-      'leave-to-class': S.slideRightLeaveTo
+      'enter-from-class': S.moveEnterFrom,
+      'leave-active-class': S.moveLeaveActive,
+      'enter-active-class': S.moveEnterActive,
+      'leave-to-class': S.moveLeaveTo
     };
   }
   return {};
@@ -33,8 +54,26 @@ const getTransition = (type: TransitionType) => {
 </script>
 
 <template>
-  <RouterView v-slot="{ Component, route }">
-    <transition v-bind="getTransition(route.meta.transitionType)" mode="out-in">
+  <RouterView v-slot="{ Component }">
+    <transition
+      v-if="props.keepAlive"
+      v-bind="(getTransition() as any)"
+      :mode="props.mode"
+      appear
+    >
+      <KeepAlive
+        v-if="props.keepAlive"
+        :include="props.keepAliveInclude"
+        :exclude="props.keepAliveExclude"
+      >
+        <component :is="Component" />
+      </KeepAlive>
+    </transition>
+    <transition
+      v-if="!props.keepAlive"
+      v-bind="(getTransition() as any)"
+      :mode="props.mode"
+    >
       <component :is="Component" />
     </transition>
   </RouterView>

@@ -1,2 +1,10 @@
 export * from './user';
-export type TransitionType = 'SLIDE_LEFT' | 'SLIDE_RIGHT' | 'FADE';
+export * from './space';
+export * from './utils';
+
+export type PageStruct<T> = {
+  content: T[];
+  totalElements: number;
+};
+
+export type TransitionType = 'FORWARD' | 'BACK' | 'REPLACE';

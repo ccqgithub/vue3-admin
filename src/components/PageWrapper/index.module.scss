@@ -1,31 +1,93 @@
-.page {
-  min-height: 100%;
-}
-
-.header {
-  height: 56px;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  background: #008dff;
-  box-shadow: 0 0.5rem 1rem 0 rgb(44 51 73 / 10%);
-  padding: 0 20px;
-  color: #fff;
-  position: sticky;
+// cover
+.cover {
+  position: absolute;
   left: 0;
+  right: 0;
   top: 0;
-  z-index: 100;
+  bottom: 0;
+  z-index: 10;
 }
 
-.headerLeft {
+.clearMargin {
+  &::after {
+    content: " ";
+    height: 0;
+    width: 100%;
+    display: block;
+  }
+}
+
+// pure page
+.purePage {
+  @extend .clearMargin;
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.pureWrapper {
+  @extend .clearMargin;
+  padding: 16px;
+}
+
+// list page
+.listPage {
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
 }
 
-.headerRight {
+.listWrapper {
+  height: 0;
+  flex: 1 1 auto;
+  padding: 16px;
+}
+
+.listCard {
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #fff;
+  border: 0.0625rem solid #e4e9f2;
+  margin-bottom: 12px;
+  padding: 16px;
 }
 
-.breadcrumb {
-  font-size: 14px;
-  line-height: 22px;
+.listTop {
+  flex: 0 0 auto;
+}
+
+.listMain {
+  height: 0;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+// info page
+.infoPage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+}
+
+.infoWrapper {
+  height: 0;
+  flex: 1 1 auto;
+  padding: 16px;
+}
+
+.infoCard {
+  height: 100%;
+  background-color: #fff;
+  border: 0.0625rem solid #e4e9f2;
+  margin-bottom: 12px;
+  overflow: auto;
+  padding: 16px;
 }

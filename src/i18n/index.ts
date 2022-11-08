@@ -1,5 +1,7 @@
 import { nextTick, ref } from 'vue';
 import { createI18n } from 'vue-i18n';
+import { baseUrl } from '@/config/util';
+import { joinUrl } from '@/utils/url';
 
 const languageKey = 'language';
 
@@ -30,8 +32,12 @@ export const LangSelects: { value: LangType; text: string }[] = [
   }
 ];
 
+export const getLangItem = (lang: LangType) => {
+  return LangSelects.find((item) => item.value === lang);
+};
+
 // 默认语言
-export const defaultLanguage: LangType = LangType.ZH;
+export const defaultLanguage: LangType = LangType.EN;
 
 export const normalizeLang = (lang: string): string => {
   if (!lang) return '';
@@ -52,8 +58,9 @@ export const getLangFromStore = () => {
 
 export const getLangFromPath = () => {
   // '/en-US/'
-  const p = location.pathname.split('/')[1] || '';
-  console.log(p);
+  const start = joinUrl('/', baseUrl, '/');
+  const path = joinUrl('/', location.pathname.substring(start.length), '/');
+  const p = path.split('/')[1] || '';
   return normalizeLang(p);
 };
 
@@ -63,11 +70,11 @@ export const getInitLanguage = (): [LangType, boolean] => {
   lang = getLangFromPath();
   if (lang) return [lang as LangType, true];
 
-  lang = getLangFromStore();
-  if (lang) return [lang as LangType, false];
+  // lang = getLangFromStore();
+  // if (lang) return [lang as LangType, false];
 
-  lang = getLangFromBrowser();
-  if (lang) return [lang as LangType, false];
+  // lang = getLangFromBrowser();
+  // if (lang) return [lang as LangType, false];
 
   return [defaultLanguage, false];
 };
@@ -89,14 +96,19 @@ export const i18n = createI18n({
   messages: i18nMessages
 });
 
-export const setLanguage = (lang: LangType) => {
+export const setLanguage = (l: LangType) => {
   const oldLang = i18n.global.locale.value;
-  const path = location.pathname;
+  if (l === oldLang) return;
+  const url = new URL(location.href);
+  const start = joinUrl('/', baseUrl, '/');
+  const path = joinUrl('/', url.pathname.substring(start.length), '/');
   if (isLangFromPath.value) {
-    location.pathname = path.replace(new RegExp(`^/${oldLang}`), `/${lang}`);
+    const p = path.replace(new RegExp(`^/${oldLang}`), `/${l}`);
+    url.pathname = joinUrl(baseUrl, p);
   } else {
-    location.pathname = `/${lang}${path}`;
+    url.pathname = joinUrl(baseUrl, l, path);
   }
+  location.replace(url.href);
 };
 
 const loadedLangs: LangType[] = [];

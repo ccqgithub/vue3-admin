@@ -9,3 +9,5 @@ export * from './Layout';
 export * from './Breadcrumb';
 export * from './Loading';
 export * from './ErrorWrapper';
+export * from './ConfirmModal';
+export * from './Block';

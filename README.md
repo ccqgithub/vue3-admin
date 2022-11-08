@@ -20,4 +20,4 @@
 ## 配置文件
 
 - `envs/*`
-
+- `npm run env`: 自动更新 `env.d.ts`
