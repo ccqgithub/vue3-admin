@@ -54,14 +54,14 @@ onMounted(() => {
   if (!appStore.user) {
     getUser();
   }
+});
 
-  watchEffect(() => {
-    if (!refMain.value || !refHeader.value || !refMainPage.value) return;
-    appStore.setLayout({
-      mainHeight: mainHeight.value,
-      mainHeaderHeight: headerHeight.value,
-      mainPageHeight: mianPageHeight.value
-    });
+watchEffect(() => {
+  if (!refMain.value || !refHeader.value || !refMainPage.value) return;
+  appStore.setLayout({
+    mainHeight: mainHeight.value,
+    mainHeaderHeight: headerHeight.value,
+    mainPageHeight: mianPageHeight.value
   });
 });
 </script>
